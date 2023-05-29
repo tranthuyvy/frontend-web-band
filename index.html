@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Band</title>
+    <title>NH4TV</title>
+    <link rel="icon" href="https://img.icons8.com/?size=512&id=12797&format=png" type="image/x-icon" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css"> 
 </head>
@@ -12,19 +13,18 @@
         <div id="header">
             <!-- Begin Nav -->
             <ul id="nav">
-                <li><a href="">Home</a></li>
-                <li><a href="">Band</a></li>
-                <li><a href="">Tour</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#band">Band</a></li>
+                <li><a href="#tour">Tour</a></li>
                 <li>
                     <a href="">
                         More
                         <i class="nav-arrow-down ti-arrow-circle-down"></i>
                     </a>
                     <ul class="subnav">
-                        <li><a href="">Merchandise</a></li>
-                        <li><a href="">Extras</a></li>
-                        <li><a href="">Media</a></li>
+                        <li><a href="#">Merchandise</a></li>
+                        <li><a href="#">Extras</a></li>
+                        <li><a href="#">Media</a></li>
                     </ul>
                 </li>
             </ul>
@@ -49,7 +49,7 @@
 
         <div id="content">
             <!-- About Section -->
-            <div class="content-section">
+            <div id="band" class="content-section">
                 <h2 class="section-heading">THE BAND</h2>
                 <p class="section-sub-heading">We love music</p>
                 <p class="about-text">
@@ -77,7 +77,7 @@
             </div>
 
             <!-- Tour Section -->
-            <div class="tour-section">
+            <div id="tour" class="tour-section">
                 <div class="content-section">
                     <h2 class="section-heading text-white" >TOUR DATES</h2>
                     <p class="section-sub-heading text-white">Remember to book your tickets!</p>
@@ -96,7 +96,7 @@
                                 <h3 class="place-heading">New York</h3>
                                 <p class="place-time">Fri 27 Nov 2023</p>
                                 <p class="place-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="place-buy-btn">Buy Tickets</a>
+                                <button class="place-buy-btn js-buy-ticket">Buy Tickets</button>
                             </div>
                         </div>
                         <div class="place-item">
@@ -105,7 +105,7 @@
                                 <h3 class="place-heading">Paris</h3>
                                 <p class="place-time">Sat 28 Nov 2023</p>
                                 <p class="place-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="place-buy-btn">Buy Tickets</a>
+                                <button class="place-buy-btn js-buy-ticket">Buy Tickets</button>
                             </div>
                         </div>
                         <div class="place-item">
@@ -114,7 +114,7 @@
                                 <h3 class="place-heading">San Francisco</h3>
                                 <p class="place-time">Sun 29 Nov 2023</p>
                                 <p class="place-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="place-buy-btn">Buy Tickets</a>
+                                <button class="place-buy-btn js-buy-ticket">Buy Tickets</button>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -122,43 +122,45 @@
                 </div>
             </div>
 
-            <!-- Contact Section -->
-            <div class="content-section">
-                <h2 class="section-heading">CONTACT</h2>
-                <p class="section-sub-heading">Fan? Drop a note!</p>
-                
-            </div>
-
         </div>
 
         <div id="footer">
+            <div class="socials-list">
+                <a href=""><i class="ti-facebook"></i></a>
+                <a href=""><i class="ti-instagram"></i></a>
+                <a href=""><i class="ti-youtube"></i></a>
+                <a href=""><i class="ti-pinterest"></i></a>
+                <a href=""><i class="ti-twitter"></i></a>
+                <a href=""><i class="ti-linkedin"></i></a>
+            </div>
+            <p class="copyright">Powered by <a href="">nht4v</a></p>
 
         </div>
 
     </div>
-    <div class="modal">
-        <div class="modal-container">
-            <div class="modal-close">
+    <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+            <div class="modal-close js-modal-close">
                 <i class="ti-close"></i>
 
             </div>
 
             <header class="modal-header">
-                <i class="ti-bag"></i>
+                <i class="modal-heading-icon ti-bag"></i>
                 Tickets
             </header>
             <div class="modal-body">
-                <label for="" class="modal-label">
+                <label for="ticket-quantity" class="modal-label">
                     <i class="ti-shopping-cart"></i>
                     Tickets, 15$ per person
                 </label>
-                <input type="text" class="modal-input" placeholder="How many?">
+                <input id="ticket-quantity" type="text" class="modal-input" placeholder="How many?">
 
-                <label for="" class="modal-label">
+                <label for="ticket-email" class="modal-label">
                     <i class="ti-user"></i>
                     Send to
                 </label>
-                <input type="email" class="modal-input" placeholder="Enter email...">
+                <input id="ticket-email" type="email" class="modal-input" placeholder="Enter email...">
                 
                 <button id="buy-tickets">
                     Pay <i class="ti-check"></i>
@@ -171,5 +173,32 @@
             </footer>
         </div>
     </div>
+
+    <script>
+        const buyBtns = document.querySelectorAll('.js-buy-ticket')
+        const modal = document.querySelector('.js-modal')
+        const modalContainer = document.querySelector('.js-modal-container')
+        const modalClose = document.querySelector('.js-modal-close')
+
+        //hàm hiển thị modal buy-ticket
+        function showBuyTickets() {
+            modal.classList.add('open')
+        }
+
+        //hàm ẩn modal buy-ticket
+        function hideBuyTickets() {
+            modal.classList.remove('open')
+        }
+
+        for(const buyBtn of buyBtns){
+            buyBtn.addEventListener('click', showBuyTickets)
+        }
+        
+        modalClose.addEventListener('click', hideBuyTickets)
+        modal.addEventListener('click', hideBuyTickets)
+        modalContainer.addEventListener('click', function (event) {
+            event.stopPropagation()
+        })
+    </script>
 </body>
 </html>
